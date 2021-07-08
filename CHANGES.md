@@ -140,6 +140,19 @@
 
 ### Bug Fixes and Minor Changes
 
+  * `XMonad.Layout.Fullscreen`
+
+    - Add fullscreenSupportBorder which uses smartBorders to remove
+      window borders when the window is fullscreen.
+
+  * `XMonad.Config.Mate`
+
+    - Split out the logout dialog and add a shutdown dialog. The default behavior
+      remains the same but there are now `mateLogout` and `mateShutdown` actions
+      available.
+
+    - Add mod-d keybinding to open the Mate main menu.
+
   * `XMonad.Actions.DynamicProjects`
 
     - The `changeProjectDirPrompt` function respects the `complCaseSensitivity` field
@@ -311,6 +324,12 @@
 
     - Added `doLower` and `doRaise`
 
+    - Added `shiftToSame` and `clientLeader` which allow a hook to be created
+      that shifts a window to the workspace of other windows of the application
+      (using either the `WM_CLIENT_LEADER` or `_NET_WM_PID` property).
+
+    - Added `windowTag`
+
   * `XMonad.Util.EZConfig`
 
     - Added support for XF86Bluetooth.
@@ -396,6 +415,9 @@
       by allowing pointer events to pass through the custom prompt event
       loop.
 
+    - The prompt now cycles through its suggestions if one hits the ends
+      of the suggestion list and presses `TAB` again.
+
   * `XMonad.Actions.TreeSelect`
 
     - Fixed a crash when focusing a new window while the tree select
@@ -406,6 +428,24 @@
 
     - Fixed handling of floating window borders in multihead setups that was
       broken since 0.14.
+
+  * `XMonad.Hooks.UrgencyHook`
+
+    - It's now possible to clear urgency of selected windows only using the
+      newly exported `clearUrgents'` function. Also, this and `clearUrgents`
+      now clear the `_NET_WM_STATE_DEMANDS_ATTENTION` bit as well.
+
+    - Added a variant of `filterUrgencyHook` that takes a generic `Query Bool`
+      to select which windows should never be marked urgent.
+
+  * `XMonad.Hooks.ServerMode`
+
+    - To make it easier to use, the `xmonadctl` client is now included in
+      `scripts/`.
+
+  * `XMonad.Layout.TrackFloating`
+
+    - Fixed a bug that prevented changing focus on inactive workspaces.
 
 ## 0.16
 
